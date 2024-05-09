@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizadores Resultado</title>
+    <style>
+        .container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .token-list li {
+            font-size: 0.8em; /* Tamaño de fuente más pequeño */
+            white-space: nowrap; /* Evita el salto de línea */
+            overflow: hidden; /* Oculta el texto que no cabe */
+            text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto no cabe */
+        }
+    </style>
+</head>
+<body>
+    
+    <button onclick="mostrarPadre('lexico')">AnalyCode</button>
+
+    <div id="padre" class="padre">
+        <div class="container">
+            <h1>Lexico Resultado</h1>
+            <p>Code:</p>
+            <pre>{{ code }}</pre>
+
+            <p>Tokens:</p>
+            <ul class="token-list">
+                {% for token in tokens %}
+                    <li>{{ token.type }}: {{ token.value }} (Line: {{ token.line }}, Position: {{ token.lexpos }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="container" style="display:none">
+            <h1>Sintactico Resultado</h1>
+            <p>Code:</p>
+            <pre>{{ code }}</pre>
+
+            <p>Tokens:</p>
+            <ul class="token-list">
+                {% for token in tokens %}
+                    <li> {{ token.value1 }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function mostrarPadre(resultado) {
+            var lexico = document.getElementById('padre').children[0];
+            var sintactico = document.getElementById('padre').children[1];
+
+            if (resultado === 'lexico') {
+                lexico.style.display = 'block';
+                sintactico.style.display = 'none';
+            } else if (resultado === 'sintactico') {
+                lexico.style.display = 'none';
+                sintactico.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

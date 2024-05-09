@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador Léxico y Sintáctico</title>
+    <style>
+        p {
+       white-space: pre-wrap;
+   }
+</style>
+</head>
+<body>
+
+
+    <h1>Analizador Sintáctico</h1>
+    <form action="{{ url_for('analizar') }}" method="post">
+        <textarea name="codigo" rows="10" cols="50" placeholder="Ingrese su código aquí"></textarea>
+        <br>
+        <button type="submit">Analizar</button>
+    </form>
+    <div>
+        <h2>Resultado Lexer:</h2>
+        <p>{{ resultado1 }}</p>
+    </div>
+    <div>
+        <h2>Resultado Parser:</h2>
+        <p>{{ resultadoParser }}</p>
+    </div>
+</body>
+</html>
